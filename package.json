@@ -1,0 +1,11 @@
+{
+  "name": "chllng-weekend",
+  "version": "1.0.0",
+  "description": "Week 2 - Weekend Challenge Conway Game of Life 🦠 ! Deberás de programar el Juego de la vida de Conway.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
