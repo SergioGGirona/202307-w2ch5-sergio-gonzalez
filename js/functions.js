@@ -1,6 +1,5 @@
 export function generateArray(columns, rows) {
-  const arr = [];
-
+  const cells = [];
   let row = 0;
   let column = -1;
   for (let i = 0; i < columns * rows; i++) {
@@ -16,19 +15,27 @@ export function generateArray(columns, rows) {
       row,
       column,
     };
-    arr.push(cel);
+    cells.push(cel);
   }
-
-  return arr;
+// cambiar aquí 1 y 0 por 🌿 o 👼 y 🪦
+  return cells;
 }
 
-export function showBoard(board) {
-  let arr = [];
+export function showBoard(board, columns) {
+  let row = [];
   board.forEach((cel) => {
-    arr.push(cel.status);
-    if (cel.column % 5 === 0) {
-      console.log(arr.join(" "));
-      arr = [];
+    row.push(cel.status);
+    if (cel.column % columns === 0) {
+      console.log(row.join(" "));
+      row = [];
     }
   });
 }
+
+export function checkNeighbours(cel, board, columns, rows) {
+  const neighbours = [];
+  const { row, column } = cel;
+
+  if (row === 1 && column === 1) {
+    //check row 1 & column 2, if there are more 1 than 0
+  }
