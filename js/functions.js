@@ -35,149 +35,42 @@ export function showBoard(board) {
 
 export function playTurn(board) {
   let result = [];
+  let aliveAround;
+  result = board.map((originCell) => {
+    aliveAround = board.filter(
+      (cellFilter) =>
+        cellFilter.status === 1 &&
+        ((cellFilter.row === originCell.row - 1 &&
+          cellFilter.column === originCell.column - 1) ||
+          (cellFilter.row === originCell.row - 1 &&
+            cellFilter.column === originCell.column) ||
+          (cellFilter.row === originCell.row - 1 &&
+            cellFilter.column === originCell.column + 1) ||
+          (cellFilter.row === originCell.row + 1 &&
+            cellFilter.column === originCell.column - 1) ||
+          (cellFilter.row === originCell.row + 1 &&
+            cellFilter.column === originCell.column) ||
+          (cellFilter.row === originCell.row + 1 &&
+            cellFilter.column === originCell.column + 1) ||
+          (cellFilter.row === originCell.row &&
+            cellFilter.column === originCell.column - 1) ||
+          (cellFilter.row === originCell.row &&
+            cellFilter.column === originCell.column + 1))
+    ).length;
+    let nextStatus;
+    if (originCell.status === 1) {
+      if (aliveAround === 2 || aliveAround === 3) {
+        nextStatus = 1;
+      } else {
+        nextStatus = 0;
+      }
+    } else if (aliveAround === 3) {
+      nextStatus = 1;
+    } else {
+      nextStatus = 0;
+    }
 
-  result = board.map(({ status, row, column }, index, totalCells) => {
-    if (status === 1 && column === 1 && row === 1)
-      return {
-        status: checkCornerTopLeft(totalCells, true),
-        row: 1,
-        column: 1,
-      };
-    return checkCenterCells();
+    return { status: nextStatus, row: 1, column: 1 };
   });
 
   return result;
-}
-
-export function checkCornerTopLeft(board, isAlive) {
-  if (isAlive) {
-    const aliveAround =
-      board.filter(
-        (cellFilter) =>
-          cellFilter.status === 1 &&
-          (cellFilter.row === 1 || cellFilter.row === 2) &&
-          (cellFilter.column === 1 || cellFilter.column === 2)
-      ).length - 1;
-
-    if (aliveAround > 1 && aliveAround < 4) return 1;
-    if (aliveAround < 2 || aliveAround > 3) return 0;
-  }
-
-  if (!isAlive) {
-    const aliveAround = board.filter(
-      (cellFilter) =>
-        cellFilter.status === 1 &&
-        (cellFilter.row === 1 || cellFilter.row === 2) &&
-        (cellFilter.column === 1 || cellFilter.column === 2)
-    ).length;
-
-    if (aliveAround === 3) return 1;
-    return 0;
-  }
-}
-
-export function checkCornerTopRight(board, isAlive) {
-  const maxColumn = board.filter((cel) => cel.row === 1).length;
-  if (isAlive) {
-    const aliveAround =
-      board.filter(
-        (cellFilter) =>
-          cellFilter.status === 1 &&
-          (cellFilter.row === 1 || cellFilter.row === 2) &&
-          (cellFilter.column === maxColumn || cellFilter.column === maxColumn)
-      ).length - 1;
-
-    if (aliveAround > 1 && aliveAround < 4) return 1;
-    if (aliveAround < 2 || aliveAround > 3) return 0;
-  }
-
-  if (!isAlive) {
-    const aliveAround = board.filter(
-      (cellFilter) =>
-        cellFilter.status === 1 &&
-        (cellFilter.row === 1 || cellFilter.row === 2) &&
-        (cellFilter.column === maxColumn || cellFilter.column === maxColumn)
-    ).length;
-
-    if (aliveAround === 3) return 1;
-    return 0;
-  }
-}
-
-export function checkCornerBottomLeft(board, isAlive) {
-  const maxColumn = board.filter((cel) => cel.row === 1).length;
-  const maxRow = board.filter((cel) => cel.column === maxColumn).length;
-
-  if (isAlive) {
-    const aliveAround =
-      board.filter(
-        (cellFilter) =>
-          cellFilter.status === 1 &&
-          (cellFilter.row === maxRow || cellFilter.row === maxRow + 1) &&
-          (cellFilter.column === maxColumn ||
-            cellFilter.column === maxColumn + 1)
-      ).length - 1;
-
-    if (aliveAround > 1 && aliveAround < 4) return 1;
-    if (aliveAround < 2 || aliveAround > 3) return 0;
-  }
-
-  if (!isAlive) {
-    const aliveAround = board.filter(
-      (cellFilter) =>
-        cellFilter.status === 1 &&
-        (cellFilter.row === maxRow || cellFilter.row === maxRow + 1) &&
-        (cellFilter.column === maxColumn || cellFilter.column === maxColumn + 1)
-    ).length;
-
-    if (aliveAround === 3) return 1;
-    return 0;
-  }
-}
-
-export function checkCornerBottomRight(board, isAlive) {
-  const maxColumn = board.filter((cel) => cel.row === 1).length;
-  const maxRow = board.filter((cel) => cel.column === maxColumn).length;
-
-  if (isAlive) {
-    const aliveAround =
-      board.filter(
-        (cellFilter) =>
-          cellFilter.status === 1 &&
-          (cellFilter.row === maxRow || cellFilter.row === maxRow - 1) &&
-          (cellFilter.column === maxColumn ||
-            cellFilter.column === maxColumn - 1)
-      ).length - 1;
-
-    if (aliveAround > 1 && aliveAround < 4) return 1;
-    if (aliveAround < 2 || aliveAround > 3) return 0;
-  }
-
-  if (!isAlive) {
-    const aliveAround = board.filter(
-      (cellFilter) =>
-        cellFilter.status === 1 &&
-        (cellFilter.row === maxRow || cellFilter.row === maxRow - 1) &&
-        (cellFilter.column === maxColumn || cellFilter.column === maxColumn - 1)
-    ).length;
-
-    if (aliveAround === 3) return 1;
-    return 0;
-  }
-}
-
-export function checkCenterCells() {
-  return 1;
-}
-
-const arrayTest = [
-  { status: 0, row: 1, column: 1 },
-  { status: 1, row: 1, column: 2 },
-  { status: 0, row: 1, column: 3 },
-  { status: 1, row: 1, column: 4 },
-  { status: 1, row: 2, column: 1 },
-  { status: 0, row: 2, column: 2 },
-  { status: 1, row: 2, column: 3 },
-  { status: 1, row: 2, column: 4 },
-];
-console.log(checkCornerBottomRight(arrayTest));
