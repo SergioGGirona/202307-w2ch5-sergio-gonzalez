@@ -1,8 +1,8 @@
 import { generateArray, showBoard } from "./functions.js";
 
-const columns = 5;
-const row = 4;
+const columns = 4;
+const row = 2;
 const prueba = generateArray(columns, row);
-console.log(prueba);
 
+console.log(prueba);
 showBoard(prueba, columns);
