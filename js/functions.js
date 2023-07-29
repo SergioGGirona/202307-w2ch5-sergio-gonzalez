@@ -104,6 +104,68 @@ export function checkCornerTopRight(board, isAlive) {
   }
 }
 
+export function checkCornerBottomLeft(board, isAlive) {
+  const maxColumn = board.filter((cel) => cel.row === 1).length;
+  const maxRow = board.filter((cel) => cel.column === maxColumn).length;
+
+  if (isAlive) {
+    const aliveAround =
+      board.filter(
+        (cellFilter) =>
+          cellFilter.status === 1 &&
+          (cellFilter.row === maxRow || cellFilter.row === maxRow + 1) &&
+          (cellFilter.column === maxColumn ||
+            cellFilter.column === maxColumn + 1)
+      ).length - 1;
+
+    if (aliveAround > 1 && aliveAround < 4) return 1;
+    if (aliveAround < 2 || aliveAround > 3) return 0;
+  }
+
+  if (!isAlive) {
+    const aliveAround = board.filter(
+      (cellFilter) =>
+        cellFilter.status === 1 &&
+        (cellFilter.row === maxRow || cellFilter.row === maxRow + 1) &&
+        (cellFilter.column === maxColumn || cellFilter.column === maxColumn + 1)
+    ).length;
+
+    if (aliveAround === 3) return 1;
+    return 0;
+  }
+}
+
+export function checkCornerBottomRight(board, isAlive) {
+  const maxColumn = board.filter((cel) => cel.row === 1).length;
+  const maxRow = board.filter((cel) => cel.column === maxColumn).length;
+
+  if (isAlive) {
+    const aliveAround =
+      board.filter(
+        (cellFilter) =>
+          cellFilter.status === 1 &&
+          (cellFilter.row === maxRow || cellFilter.row === maxRow - 1) &&
+          (cellFilter.column === maxColumn ||
+            cellFilter.column === maxColumn - 1)
+      ).length - 1;
+
+    if (aliveAround > 1 && aliveAround < 4) return 1;
+    if (aliveAround < 2 || aliveAround > 3) return 0;
+  }
+
+  if (!isAlive) {
+    const aliveAround = board.filter(
+      (cellFilter) =>
+        cellFilter.status === 1 &&
+        (cellFilter.row === maxRow || cellFilter.row === maxRow - 1) &&
+        (cellFilter.column === maxColumn || cellFilter.column === maxColumn - 1)
+    ).length;
+
+    if (aliveAround === 3) return 1;
+    return 0;
+  }
+}
+
 export function checkCenterCells() {
   return 1;
 }
@@ -116,6 +178,6 @@ const arrayTest = [
   { status: 1, row: 2, column: 1 },
   { status: 0, row: 2, column: 2 },
   { status: 1, row: 2, column: 3 },
-  { status: 0, row: 2, column: 4 },
+  { status: 1, row: 2, column: 4 },
 ];
 console.log(checkCornerBottomRight(arrayTest));
