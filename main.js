@@ -21,16 +21,17 @@ export function generateArray(columns, rows) {
   return cells;
 }
 
-const cells = document.querySelectorAll(".game--Box__cell");
+export function showBoard(board) {
+  const boardCells = document.querySelectorAll(".game--Box__cell");
+  boardCells.forEach((cell, index) => {
+    if (board[index].status === 0) {
+      cell.textContent = "(x_x')";
+      cell.style.background = "#73462c";
+    }
 
-export function showBoard(board, cells) {
-  let row = [];
-  const maxColumn = board.filter((cel) => cel.row === 1).length;
-  board.forEach((cel) => {
-    row.push(cel.status);
-    if (cel.column % maxColumn === 0) {
-      console.log(row.join(" "));
-      row = [];
+    if (board[index].status === 1) {
+      cell.textContent = "(˶ˆᗜˆ˵)";
+      cell.style.background = "#52ad4c";
     }
   });
 }
@@ -84,14 +85,14 @@ export function playTurn(board) {
 
 let intervalID;
 
-const playGame = (intervalID) => {
-  let newBoard = generateArray(5, 5);
+const playGame = () => {
+  let newBoard = generateArray(10, 10);
+
   intervalID = setInterval(() => {
     showBoard(newBoard);
-    console.log(" ");
+
     const boardActualized = playTurn(newBoard);
     showBoard(boardActualized);
-    console.log(" ");
 
     newBoard = playTurn(boardActualized);
   }, 1000);

@@ -48,7 +48,6 @@ header h2 {
   width: 12rem;
   background-color: #daa06e;
   border: none;
-  border-radius: 0.5rem;
 }
 
 .game {
@@ -59,13 +58,12 @@ header h2 {
 }
 
 .button {
-  height: 2rem;
+  height: 3rem;
   width: 10rem;
   font-size: 1.1rem;
   border: none;
   color: #f2f2f2;
-  border-radius: 0.25rem;
-  background-color: #334018;
+  background-color: black;
 }
 
 .button:active {
@@ -75,19 +73,23 @@ header h2 {
 
 .game--Box {
   width: auto;
-  height: 80vh;
+  height: 60vh;
   display: grid;
   grid-template-columns: repeat(10, 4.1rem);
-  grid-template-rows: repeat(10, 2.1rem);
+  grid-template-rows: repeat(10, 1.1rem);
   grid-gap: 1rem;
   place-content: center;
   place-items: center;
 }
 
 .game--Box__cell {
-  height: 3rem;
+  height: 2rem;
   width: 5rem;
   place-self: center;
+  text-align: center;
+  justify-items: center;
+  align-self: center;
+  padding-block-start: 5px;
   background-color: #73462c;
 }
 
