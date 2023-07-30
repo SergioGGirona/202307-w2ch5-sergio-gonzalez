@@ -21,7 +21,9 @@ export function generateArray(columns, rows) {
   return cells;
 }
 
-export function showBoard(board) {
+const cells = document.querySelectorAll(".game--Box__cell");
+
+export function showBoard(board, cells) {
   let row = [];
   const maxColumn = board.filter((cel) => cel.row === 1).length;
   board.forEach((cel) => {
@@ -80,11 +82,11 @@ export function playTurn(board) {
   return result;
 }
 
-const playGame = () => {
+let intervalID;
+
+const playGame = (intervalID) => {
   let newBoard = generateArray(5, 5);
-  let count = 0;
-  const intervalID = setInterval(() => {
-    count++;
+  intervalID = setInterval(() => {
     showBoard(newBoard);
     console.log(" ");
     const boardActualized = playTurn(newBoard);
@@ -93,9 +95,14 @@ const playGame = () => {
 
     newBoard = playTurn(boardActualized);
   }, 1000);
-  if (count === 5) {
-    clearInterval(intervalID);
-  }
 };
 
-playGame();
+const startButton = document.querySelector(".start--button");
+const stopButton = document.querySelector(".stop--button");
+
+startButton.addEventListener("click", () => {
+  playGame();
+});
+stopButton.addEventListener("click", () => {
+  clearInterval(intervalID);
+});
