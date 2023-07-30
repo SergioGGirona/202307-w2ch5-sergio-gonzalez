@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "sass": "sass sass:css --watch",
     "test": "jest",
     "test:a": "jest --watchAll",
     "test:prod": "jest --watchAll --coverage --watchAll=false --passWithNoTests",
-    "prepare": "husky install",
-    "sass": "sass sass:css --watch"
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",

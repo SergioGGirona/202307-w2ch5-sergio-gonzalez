@@ -1,4 +1,4 @@
-import { generateArray, playTurn, showBoard } from "./functions.js";
+import { generateArray, playTurn, showBoard } from "./main.js";
 describe("Given generateArray function", () => {
   describe("When it is call with (4,2)", () => {
     test("Then array.length should be  8", () => {
