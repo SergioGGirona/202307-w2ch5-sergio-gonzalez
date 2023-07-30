@@ -25,13 +25,13 @@ export function showBoard(board) {
   const boardCells = document.querySelectorAll(".game--Box__cell");
   boardCells.forEach((cell, index) => {
     if (board[index].status === 0) {
-      cell.textContent = "(x_x')";
-      cell.style.background = "#73462c";
+      cell.textContent = "🧟‍♂️";
+      cell.style.background = "#53635A";
     }
 
     if (board[index].status === 1) {
-      cell.textContent = "(˶ˆᗜˆ˵)";
-      cell.style.background = "#52ad4c";
+      cell.textContent = "🧑‍💻";
+      cell.style.background = "#BCE3CD";
     }
   });
 }
