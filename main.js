@@ -70,7 +70,32 @@ export function playTurn(board) {
       nextStatus = 0;
     }
 
-    return { status: nextStatus, row: 1, column: 1 };
+    return {
+      status: nextStatus,
+      row: originCell.row,
+      column: originCell.column,
+    };
   });
 
   return result;
+}
+
+const playGame = () => {
+  let newBoard = generateArray(5, 5);
+  let count = 0;
+  const intervalID = setInterval(() => {
+    count++;
+    showBoard(newBoard);
+    console.log(" ");
+    const boardActualized = playTurn(newBoard);
+    showBoard(boardActualized);
+    console.log(" ");
+
+    newBoard = playTurn(boardActualized);
+  }, 1000);
+  if (count === 5) {
+    clearInterval(intervalID);
+  }
+};
+
+playGame();
