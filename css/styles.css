@@ -63,7 +63,7 @@ header h2 {
   font-size: 1.1rem;
   border: none;
   color: #f2f2f2;
-  background-color: black;
+  background-color: #222222;
 }
 
 .button:active {
