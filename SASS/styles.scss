@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "League Spartan", sans-serif;
+}
+
+$green: #52ad4c;
+$darkgreen: #334018;
+$brown: #73462c;
+$beige: #d9ab82;
+$nowhite: #f2f2f2;
+
+body {
+  background: conic-gradient($nowhite, $beige);
+  width: 100vw;
+  height: 100vh;
+}
+
+header {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+
+  h1 {
+    font-size: 3rem;
+    display: flex;
+    span {
+      color: $green;
+    }
+  }
+  h2 {
+    font-size: 1rem;
+    align-self: end;
+  }
+}
+.startForm {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import { generateArray, playTurn } from "./main.js";
+import { generateArray, playTurn, showBoard } from "./functions.js";
 describe("Given generateArray function", () => {
   describe("When it is call with (4,2)", () => {
     test("Then array.length should be  8", () => {
@@ -32,7 +32,7 @@ describe("Given generateArray function", () => {
 
 describe("Given playTurn function", () => {
   describe("When it is call with [0 1 1 0  1 1 1 1  1 0 0 1  0 1 0 1]", () => {
-    test("Then cell status should be  0}", () => {
+    test("Then cell  status should be  0}", () => {
       const origin = [
         { status: 0, row: 1, column: 1 },
         { status: 1, row: 1, column: 2 },
@@ -77,164 +77,29 @@ describe("Given playTurn function", () => {
   });
 });
 
-describe("When it is call with a user choice of 5 rows and 6 columns", () => {
-  test("Then userArrayColumns should be 6", () => {
-    const userArray = [
-      {
-        status: 0,
-        row: 1,
-        column: 1,
-      },
-      {
-        status: 0,
-        row: 1,
-        column: 2,
-      },
-      {
-        status: 0,
-        row: 1,
-        column: 3,
-      },
-      {
-        status: 1,
-        row: 1,
-        column: 4,
-      },
-      {
-        status: 1,
-        row: 1,
-        column: 5,
-      },
-      {
-        status: 0,
-        row: 2,
-        column: 1,
-      },
-      {
-        status: 1,
-        row: 2,
-        column: 2,
-      },
-      {
-        status: 0,
-        row: 2,
-        column: 3,
-      },
-      {
-        status: 1,
-        row: 2,
-        column: 4,
-      },
-      {
-        status: 0,
-        row: 2,
-        column: 5,
-      },
-      {
-        status: 0,
-        row: 3,
-        column: 1,
-      },
-      {
-        status: 1,
-        row: 3,
-        column: 2,
-      },
-      {
-        status: 1,
-        row: 3,
-        column: 3,
-      },
-      {
-        status: 0,
-        row: 3,
-        column: 4,
-      },
-      {
-        status: 1,
-        row: 3,
-        column: 5,
-      },
-      {
-        status: 0,
-        row: 4,
-        column: 1,
-      },
-      {
-        status: 1,
-        row: 4,
-        column: 2,
-      },
-      {
-        status: 0,
-        row: 4,
-        column: 3,
-      },
-      {
-        status: 0,
-        row: 4,
-        column: 4,
-      },
-      {
-        status: 0,
-        row: 4,
-        column: 5,
-      },
-      {
-        status: 1,
-        row: 5,
-        column: 1,
-      },
-      {
-        status: 1,
-        row: 5,
-        column: 2,
-      },
-      {
-        status: 0,
-        row: 5,
-        column: 3,
-      },
-      {
-        status: 1,
-        row: 5,
-        column: 4,
-      },
-      {
-        status: 0,
-        row: 5,
-        column: 5,
-      },
-      {
-        status: 0,
-        row: 6,
-        column: 1,
-      },
-      {
-        status: 0,
-        row: 6,
-        column: 2,
-      },
-      {
-        status: 0,
-        row: 6,
-        column: 3,
-      },
-      {
-        status: 1,
-        row: 6,
-        column: 4,
-      },
-      {
-        status: 0,
-        row: 6,
-        column: 5,
-      },
-    ];
-    const userArrayColumns = userArray.filter((cel) => cel.column === 1).length;
-
-    const expected = 6;
-
-    expect(userArrayColumns).toEqual(expected);
+describe("Given showBoard function", () => {
+  describe("When it is call", () => {
+    test("is be the undefined?", () => {
+      const origin = [
+        { status: 0, row: 1, column: 1 },
+        { status: 1, row: 1, column: 2 },
+        { status: 1, row: 1, column: 3 },
+        { status: 0, row: 1, column: 4 },
+        { status: 1, row: 2, column: 1 },
+        { status: 1, row: 2, column: 2 },
+        { status: 1, row: 2, column: 3 },
+        { status: 1, row: 2, column: 4 },
+        { status: 1, row: 3, column: 1 },
+        { status: 0, row: 3, column: 2 },
+        { status: 0, row: 3, column: 3 },
+        { status: 1, row: 3, column: 4 },
+        { status: 0, row: 4, column: 1 },
+        { status: 1, row: 4, column: 2 },
+        { status: 0, row: 4, column: 3 },
+        { status: 1, row: 4, column: 4 },
+      ];
+      const result = showBoard(origin);
+      expect(result).toBe(undefined);
+    });
   });
 });
